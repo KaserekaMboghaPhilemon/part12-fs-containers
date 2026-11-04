@@ -1,0 +1,56 @@
+PS C:\Users\Kasereka\OneDrive\Desktop\fs-containers> docker container run -it ubuntu bash
+root@6acdeba944aa:/# mkdir -p /usr/src/app
+touch /usr/src/app/index.js
+root@6acdeba944aa:/# apt-get update
+apt-get -y install nano
+Get:1 http://archive.ubuntu.com/ubuntu resolute InRelease [136 kB]
+Get:2 http://security.ubuntu.com/ubuntu resolute-security InRelease [137 kB]
+Get:3 http://archive.ubuntu.com/ubuntu resolute-updates InRelease [137 kB]
+Get:4 http://archive.ubuntu.com/ubuntu resolute-backports InRelease [137 kB]
+Get:5 http://security.ubuntu.com/ubuntu resolute-security/main amd64 Packages [801 kB]
+Get:6 http://archive.ubuntu.com/ubuntu resolute/main amd64 Packages [1874 kB]
+Get:7 http://security.ubuntu.com/ubuntu resolute-security/universe amd64 Packages [259 kB]
+Get:8 http://archive.ubuntu.com/ubuntu resolute/multiverse amd64 Packages [352 kB]
+Get:9 http://security.ubuntu.com/ubuntu resolute-security/restricted amd64 Packages [648 kB]
+Get:10 http://archive.ubuntu.com/ubuntu resolute/restricted amd64 Packages [189 kB]
+Get:11 http://archive.ubuntu.com/ubuntu resolute/universe amd64 Packages [20.1 MB]
+Get:12 http://security.ubuntu.com/ubuntu resolute-security/multiverse amd64 Packages [24.6 kB]
+Get:13 http://archive.ubuntu.com/ubuntu resolute-updates/multiverse amd64 Packages [26.1 kB]
+Get:14 http://archive.ubuntu.com/ubuntu resolute-updates/restricted amd64 Packages [668 kB]
+Get:15 http://archive.ubuntu.com/ubuntu resolute-updates/universe amd64 Packages [473 kB]
+Get:16 http://archive.ubuntu.com/ubuntu resolute-updates/main amd64 Packages [993 kB]
+Get:17 http://archive.ubuntu.com/ubuntu resolute-backports/universe amd64 Packages [3308 B]
+Fetched 27.0 MB in 15s (1799 kB/s)                       
+Reading package lists... Done
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Solving dependencies... Done
+Suggested packages:
+  hunspell
+The following NEW packages will be installed:
+  nano
+0 upgraded, 1 newly installed, 0 to remove and 2 not upgraded.
+Need to get 289 kB of archives.
+After this operation, 893 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu resolute-updates/main amd64 nano amd64 8.7.1-1ubuntu0.1 [289 kB]
+Fetched 289 kB in 2s (169 kB/s)
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79, <STDIN> line 1.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC entries checked: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.40.1 /usr/local/share/perl/5.40.1 /usr/lib/x86_64-linux-gnu/perl5/5.40 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl-base /usr/lib/x86_64-linux-gnu/perl/5.40 /usr/share/perl/5.40 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 8, <STDIN> line 1.)
+debconf: falling back to frontend: Teletype
+Selecting previously unselected package nano.
+(Reading database ... 7789 files and directories currently installed.)
+Preparing to unpack .../nano_8.7.1-1ubuntu0.1_amd64.deb ...
+Unpacking nano (8.7.1-1ubuntu0.1) ...
+Setting up nano (8.7.1-1ubuntu0.1) ...
+update-alternatives: using /bin/nano to provide /usr/bin/editor (editor) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/editor.1.gz because associated file /usr/share/man/man1/nano.1.gz (of link group editor) does not exist
+update-alternatives: using /bin/nano to provide /usr/bin/pico (pico) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/pico.1.gz because associated file /usr/share/man/man1/nano.1.gz (of link group pico) does not exist
+root@6acdeba944aa:/# nano /usr/src/app/index.js
+root@6acdeba944aa:/# exit
+exit
+PS C:\Users\Kasereka\OneDrive\Desktop\fs-containers> 
