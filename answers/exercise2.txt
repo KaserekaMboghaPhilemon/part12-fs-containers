@@ -1,0 +1,5 @@
+PS C:\Users\Kasereka\OneDrive\Desktop\fs-containers> docker container run -it ubuntu bash
+root@5a552a3e0baa:/# mkdir -p /usr/src/app
+root@5a552a3e0baa:/# touch /usr/src/app/index.js
+root@5a552a3e0baa:/# exit
+exit
