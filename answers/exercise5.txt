@@ -1,0 +1,37 @@
+Exercise 5: Containerizing the todo-backend
+
+From the repository root, build the image:
+
+PS> docker build -t todo-backend ./todo-app/todo-backend
+[+] Building 212.7s (9/9) FINISHED
+ => naming to docker.io/library/todo-backend:latest
+
+Run the container in the background and publish its port 3000:
+
+PS> docker run --rm -d --name todo-backend -p 3000:3000 todo-backend
+e0bbd2448a48853775a2b3539dbb2675ec0ad733796cacd66d3e89732674f667
+
+Verify the HTTP endpoint and the non-root process:
+
+PS> Invoke-RestMethod -Uri http://localhost:3000/ | ConvertTo-Json -Compress
+{"visits":1}
+
+PS> docker exec todo-backend id
+uid=1000(node) gid=1000(node) groups=1000(node)
+
+The server log confirmed startup and a successful request:
+
+PS> docker logs todo-backend
+> todo-express-backend@0.0.0 start
+> node ./bin/www
+GET / 200 27.715 ms - 12
+
+Stop and remove the temporary container:
+
+PS> docker stop todo-backend
+todo-backend
+
+Image ID: sha256:6e5813cd1db96772f04a3fa8e4ffd7450ebcdea98a4dd06901afc9f1476702b7
+
+The todo CRUD endpoints require a reachable MongoDB configured with
+MONGO_URL. Configure REDIS_URL only when Redis-backed features are needed.
