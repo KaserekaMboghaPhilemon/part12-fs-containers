@@ -1,0 +1,1 @@
+docker compose up --build succeeded. Container todo-backend-app-1 started and successfully returned {"visits":1} at http://localhost:3000.
