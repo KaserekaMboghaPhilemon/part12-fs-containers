@@ -1,0 +1,23 @@
+Exercise 14: Testing during the build process
+
+The frontend Dockerfile contains a test-stage that installs the locked
+packages and runs npm test. The build-stage copies the workspace from
+test-stage, making it a dependency of the final image build. The Vite backend
+URL is supplied as a build argument and set before npm run build.
+
+Frontend component test results:
+
+RUN v5.1.0
+✓ Todo renders an incomplete todo and calls its actions
+✓ Todo shows completed status without the completion action
+Test Files 1 passed (1)
+Tests 2 passed (2)
+
+Build command, run from the repository root:
+
+PS> docker build --progress=plain -t todo-frontend-tested --build-arg VITE_BACKEND_URL=http://localhost:3000 .\todo-app\todo-frontend
+
+The test-gated multi-stage build completed and produced:
+
+todo-frontend-tested:latest
+Image ID: 19b90f470293
