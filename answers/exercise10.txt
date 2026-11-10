@@ -1,0 +1,8 @@
+Exercise 10: Get Set Ready!
+- Implemented todo counter using the Redis get/set helpers.
+- Updated POST /todos route to increment 'added_todos' counter in Redis on each creation.
+- Added GET /statistics endpoint in routes/index.js returning JSON:
+  {
+    "added_todos": X
+  }
+- Fixed model import wiring to reference require('../mongo').
