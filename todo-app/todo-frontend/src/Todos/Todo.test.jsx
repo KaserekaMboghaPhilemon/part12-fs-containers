@@ -2,6 +2,7 @@
 
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import TodoList from './List'
 import Todo from './Todo'
 
 afterEach(cleanup)
@@ -31,5 +32,11 @@ describe('Todo', () => {
 
     expect(screen.getByText('This todo is done')).toBeTruthy()
     expect(screen.queryByRole('button', { name: 'Set as done' })).toBeNull()
+  })
+
+  it('renders safely when the todos response is not an array', () => {
+    render(<TodoList todos={{ error: 'unexpected response' }} />)
+
+    expect(screen.queryByText('unexpected response')).toBeNull()
   })
 })

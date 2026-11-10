@@ -2,9 +2,11 @@ import React from 'react'
 import Todo from './Todo'
 
 const TodoList = ({ todos, deleteTodo, completeTodo }) => {
+  const todoItems = Array.isArray(todos) ? todos : []
+
   return (
     <>
-      {todos.map(todo => (
+      {todoItems.map(todo => (
         <React.Fragment key={todo._id}>
           <hr />
           <Todo todo={todo} deleteTodo={deleteTodo} completeTodo={completeTodo} />

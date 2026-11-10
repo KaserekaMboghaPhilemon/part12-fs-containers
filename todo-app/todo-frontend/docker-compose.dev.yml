@@ -4,6 +4,8 @@ services:
     build:
       context: .
       dockerfile: dev.Dockerfile
+    environment:
+      VITE_BACKEND_URL: http://localhost:3000
     ports:
       - "5173:5173"
     volumes:

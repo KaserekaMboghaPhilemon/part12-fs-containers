@@ -1,0 +1,4 @@
+Exercise 17: Set up an Nginx reverse proxy server in front of todo-frontend
+- Created todo-app/nginx.dev.conf configured with proxy headers and proxy_pass to http://app:5173.
+- Created todo-app/docker-compose.dev.yml incorporating both the frontend app service and the nginx reverse proxy service on port 8080.
+- Verified successful proxy routing and live application loading at http://localhost:8080.
