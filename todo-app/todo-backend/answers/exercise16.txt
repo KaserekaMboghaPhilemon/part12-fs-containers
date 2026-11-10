@@ -1,0 +1,5 @@
+Exercise 16: Run todo-backend in a development container
+- Created todo-app/todo-backend/dev.Dockerfile using Node 24 and nodemon for live-reloading.
+- Configured todo-app/todo-backend/docker-compose.dev.yml to wire the server service with MongoDB and Redis using Docker internal DNS hostnames (mongo and redis).
+- Added source code bind-mounting and an anonymous node_modules volume.
+- Verified successful database connections and API availability.
