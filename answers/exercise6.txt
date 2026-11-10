@@ -1,1 +1,14 @@
-docker compose up --build succeeded. Container todo-backend-app-1 started and successfully returned {"visits":1} at http://localhost:3000.
+Exercise 6: Run the backend with Docker Compose
+
+PS> docker compose up --build
+[+] Building 99.4s (11/11) FINISHED
+[+] up 3/3
+	Image todo-backend Built
+	Network todo-backend_default Created
+	Container todo-backend-app-1 Created
+Attaching to app-1
+app-1  | > todo-express-backend@0.0.0 start
+app-1  | > node ./bin/www
+app-1  | GET / 200 16.200 ms - 12
+
+The service responded successfully at http://localhost:3000/.

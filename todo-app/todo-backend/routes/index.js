@@ -1,12 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const configs = require('../util/config');
 
 let visits = 0;
 
-router.get('/', (req, res) => {
+router.get('/', (_req, res) => {
   visits++;
-  res.send({ ...configs, visits });
+  res.json({ visits });
 });
 
 module.exports = router;

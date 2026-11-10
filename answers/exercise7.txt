@@ -1,0 +1,32 @@
+Full Stack Open - Part 12 - Exercise 7
+
+The single-todo GET and PUT routes are handled by the todos router mounted at
+/todos. The root router handles only /, so it does not interpret "todos" as an
+ID. The MongoDB user is authenticated against the_database.
+
+GET the list:
+
+PS> curl.exe -i http://localhost:3000/todos
+HTTP/1.1 200 OK
+[{"_id":"6aec6eb5255a39bdd35330d7","text":"Write code","done":true},
+ {"_id":"6aec6eb5255a39bdd35330d8","text":"Learn about containers","done":false}]
+
+GET one todo:
+
+PS> curl.exe -i http://localhost:3000/todos/6aec6eb5255a39bdd35330d7
+HTTP/1.1 200 OK
+{"_id":"6aec6eb5255a39bdd35330d7","text":"Write code","done":true}
+
+Malformed IDs return HTTP 400:
+
+PS> curl.exe -i http://localhost:3000/todos/not-an-object-id
+HTTP/1.1 400 Bad Request
+{"error":"malformed id"}
+
+PUT one todo:
+
+PS> @{ text = 'Write code'; done = $true } | ConvertTo-Json -Compress | curl.exe -i -X PUT http://localhost:3000/todos/6aec6eb5255a39bdd35330d7 -H "Content-Type: application/json" --data-binary "@-"
+HTTP/1.1 200 OK
+{"_id":"6aec6eb5255a39bdd35330d7","text":"Write code","done":true}
+
+DELETE was not included in the observed verification session.
