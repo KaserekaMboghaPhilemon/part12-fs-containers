@@ -1,0 +1,5 @@
+Exercise 13: Todo application frontend
+- Created multi-stage Dockerfile in todo-app/todo-frontend/Dockerfile.
+- Used ARG and ENV for VITE_BACKEND_URL prior to building so Vite embeds the variable correctly.
+- Used nginx:1.29-alpine to serve the compiled static files from dist/ to /usr/share/nginx/html.
+- Verified successful image build and runtime serving via container smoke tests.
