@@ -1,0 +1,4 @@
+Exercise 19: Connect the services, todo-frontend with todo-backend
+- Removed port mappings from app (frontend) and server (backend) services in todo-app/docker-compose.dev.yml, retaining only Nginx port 8080 exposure to the host.
+- Confirmed VITE_BACKEND_URL is set to /api for proper reverse-proxy routing.
+- Verified that direct host access to port 3000 is disabled while application features function correctly through http://localhost:8080.

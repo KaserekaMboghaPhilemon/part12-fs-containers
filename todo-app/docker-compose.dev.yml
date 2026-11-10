@@ -6,8 +6,6 @@ services:
       dockerfile: dev.Dockerfile
     environment:
       VITE_BACKEND_URL: /api
-    ports:
-      - "5173:5173"
     volumes:
       - ./todo-frontend:/usr/src/app
       - /usr/src/app/node_modules
@@ -17,8 +15,6 @@ services:
     build:
       context: ./todo-backend
       dockerfile: dev.Dockerfile
-    ports:
-      - "3000:3000"
     volumes:
       - ./todo-backend:/usr/src/app
       - /usr/src/app/node_modules
