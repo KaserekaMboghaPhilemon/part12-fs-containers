@@ -1,0 +1,25 @@
+Exercise 9: Set up Redis for the project
+- Added redis service to todo-app/todo-backend/docker-compose.dev.yml:
+  redis:
+    image: redis:alpine
+    container_name: todo-backend-redis-1
+    restart: always
+    ports:
+      - "6379:6379"
+
+- Started the container:
+  docker compose -f docker-compose.dev.yml up -d redis
+
+- Configured environment variables and tested connection:
+  \redis://localhost:6379 = "redis://localhost:6379"
+  \mongodb://the_username:the_password@localhost:3456/the_database?authSource=the_database = "mongodb://the_username:the_password@localhost:3456/the_database?authSource=the_database"
+  npm.cmd run dev
+
+- Output transcript:
+  [nodemon] 3.1.14
+  [nodemon] to restart at any time, enter \s\
+  [nodemon] watching path(s): *.*
+  [nodemon] watching extensions: js,mjs,cjs,json
+  [nodemon] starting \
+ode ./bin/www\
+  Connected to Redis
