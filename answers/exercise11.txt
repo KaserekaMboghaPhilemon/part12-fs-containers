@@ -1,0 +1,72 @@
+Exercise 11: Redis CLI
+
+Open redis-cli in the running Redis container:
+
+PS> docker exec -it todo-backend-redis-1 redis-cli
+127.0.0.1:6379>
+
+Inspect the initial Redis state:
+
+127.0.0.1:6379> KEYS *
+(empty array)
+127.0.0.1:6379> GET added_todos
+(nil)
+
+Set the counter to 9001:
+
+127.0.0.1:6379> SET added_todos 9001
+OK
+
+Verify the API reads the value:
+
+PS> curl.exe -sS http://localhost:3000/statistics
+{"added_todos":9001}
+
+Create a todo through the API:
+
+PS> @{ text = 'Exercise 11 Redis counter verification'; done = $false } | ConvertTo-Json -Compress | curl.exe -sS -i -X POST http://localhost:3000/todos -H "Content-Type: application/json" --data-binary "@-"
+HTTP/1.1 201 Created
+{"text":"Exercise 11 Redis counter verification","done":false,"_id":"6af2e69e70a28d2df7d4ce28","__v":0}
+
+The counter incremented:
+
+PS> curl.exe -sS http://localhost:3000/statistics
+{"added_todos":9002}
+
+Inspect the key directly:
+
+127.0.0.1:6379> KEYS *
+1) "added_todos"
+127.0.0.1:6379> GET added_todos
+"9002"
+
+Delete the counter key:
+
+127.0.0.1:6379> DEL added_todos
+(integer) 1
+
+The missing-key fallback is zero:
+
+PS> curl.exe -sS http://localhost:3000/statistics
+{"added_todos":0}
+
+Create another todo after deleting the key:
+
+PS> @{ text = 'Exercise 11 missing-counter recovery'; done = $false } | ConvertTo-Json -Compress | curl.exe -sS -i -X POST http://localhost:3000/todos -H "Content-Type: application/json" --data-binary "@-"
+HTTP/1.1 201 Created
+{"text":"Exercise 11 missing-counter recovery","done":false,"_id":"6af2e71370a28d2df7d4ce2a","__v":0}
+
+The counter restarted at one:
+
+PS> curl.exe -sS http://localhost:3000/statistics
+{"added_todos":1}
+
+Final Redis verification:
+
+127.0.0.1:6379> KEYS *
+1) "added_todos"
+127.0.0.1:6379> GET added_todos
+"1"
+127.0.0.1:6379> exit
+
+Two test todos created during this exercise remain in the development database.
