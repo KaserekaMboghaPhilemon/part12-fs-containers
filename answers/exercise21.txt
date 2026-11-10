@@ -1,5 +1,4 @@
 Exercise 21: The smoke test
-- Verified local production stack running via docker-compose.yml on port 8080.
-- Aligned Playwright test assertions with backend HTTP contracts (GET 200, POST 201).
-- Successfully ran and passed local Playwright E2E smoke tests.
-- Configured GitHub Actions workflow branches in .github/workflows/e2e-tests.yml to trigger on push to main and master.
+- Configured robust CI readiness checks in GitHub Actions workflow to poll frontend, API todos, and statistics endpoints.
+- Removed brittle timeout/sleep assumptions from Playwright UI mutation tests, replacing them with explicit network and DOM state assertions.
+- Verified all 7 E2E and backend API tests pass cleanly locally and pushed workflow updates.

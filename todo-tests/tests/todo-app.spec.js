@@ -21,14 +21,12 @@ test.describe('Todo App E2E Tests', () => {
     const testTodoText = `Test todo ${Date.now()}`;
     
     await todoInput.fill(testTodoText);
-    
-    // Submit the form (look for submit button or press Enter)
+
+    const createResponse = page.waitForResponse(response =>
+      response.url().endsWith('/api/todos') && response.request().method() === 'POST'
+    );
     await page.keyboard.press('Enter');
-    
-    // Wait a moment for the todo to be added
-    await page.waitForTimeout(500);
-    
-    // Verify the todo appears in the list
+    expect((await createResponse).ok()).toBe(true);
     await expect(page.getByText(testTodoText)).toBeVisible();
   });
 
@@ -38,21 +36,19 @@ test.describe('Todo App E2E Tests', () => {
     const testTodoText = `Toggle test ${Date.now()}`;
     
     await todoInput.fill(testTodoText);
+    const createResponse = page.waitForResponse(response =>
+      response.url().endsWith('/api/todos') && response.request().method() === 'POST'
+    );
     await page.keyboard.press('Enter');
-    await page.waitForTimeout(500);
-    
-    // Find and click the checkbox or completion button
-    const todoItem = page.locator(`text=${testTodoText}`).locator('..');
-    const checkbox = todoItem.getByRole('checkbox').or(todoItem.getByRole('button', { name: /complete|done|check/i }));
-    
-    if (await checkbox.count() > 0) {
-      await checkbox.first().click();
-      await page.waitForTimeout(500);
-      
-      // Verify the todo's state changed (could be strikethrough, different class, etc.)
-      // This is a basic check - actual implementation may vary
-      await expect(todoItem).toBeVisible();
-    }
+    expect((await createResponse).ok()).toBe(true);
+
+    const todoItem = page.getByText(testTodoText).locator('..');
+    const updateResponse = page.waitForResponse(response =>
+      response.url().includes('/api/todos/') && response.request().method() === 'PUT'
+    );
+    await todoItem.getByRole('button', { name: 'Set as done' }).click();
+    expect((await updateResponse).ok()).toBe(true);
+    await expect(todoItem.getByText('This todo is done')).toBeVisible();
   });
 });
 
