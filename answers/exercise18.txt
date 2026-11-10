@@ -1,0 +1,4 @@
+Exercise 18: Configure the Nginx server to be in front of todo-backend
+- Added a location /api/ block in todo-app/nginx.dev.conf with a trailing slash proxy_pass to http://server:3000/.
+- Added server, mongo, and redis services to todo-app/docker-compose.dev.yml with proper internal networking and environment variables.
+- Verified successful API requests at http://localhost:8080/api/todos via the reverse proxy.
