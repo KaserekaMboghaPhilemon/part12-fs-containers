@@ -1,0 +1,4 @@
+Exercise 15: Set up a frontend development environment
+- Created todo-app/todo-frontend/dev.Dockerfile using Node 24 and starting Vite with '-- --host'.
+- Created todo-app/todo-frontend/docker-compose.dev.yml with port mapping 5173:5173, source bind-mounting, and an anonymous node_modules volume.
+- Verified successful container startup and live development serving at http://localhost:5173.
