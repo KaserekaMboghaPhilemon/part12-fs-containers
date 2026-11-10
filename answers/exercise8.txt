@@ -1,0 +1,35 @@
+Exercise 8: Mongo CLI
+- Command to access container shell and mongosh:
+  docker compose -f todo-app/todo-backend/docker-compose.dev.yml exec -it mongo mongosh -u root -p example --authenticationDatabase admin
+
+- Mongo CLI session transcript:
+  > show dbs
+  admin         0.000GB
+  config        0.000GB
+  local         0.000GB
+  the_database  0.000GB
+
+  > use the_database
+  switched to db the_database
+
+  > show collections
+  todos
+
+  > db.todos.find({})
+  [
+    { _id: ObjectId("6aec6eb5255a39bdd35330d7"), text: 'Write code', done: true },
+    { _id: ObjectId("6aec6eb5255a39bdd35330d8"), text: 'Learn about containers', done: false }
+  ]
+
+  > db.todos.insertOne({ text: "Increase the number of tools in my tool belt", done: false })
+  { acknowledged: true, insertedId: ObjectId("633c270ba211aa5f7931f080") }
+
+  > db.todos.find({})
+  [
+    { _id: ObjectId("6aec6eb5255a39bdd35330d7"), text: 'Write code', done: true },
+    { _id: ObjectId("6aec6eb5255a39bdd35330d8"), text: 'Learn about containers', done: false },
+    { _id: ObjectId("633c270ba211aa5f7931f080"), text: 'Increase the number of tools in my tool belt', done: false }
+  ]
+
+- Verified successful insertion and persistence across both Mongo CLI and Express API (GET /todos).
+"@
