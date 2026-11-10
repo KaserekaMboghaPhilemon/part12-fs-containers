@@ -4,6 +4,8 @@ services:
     build:
       context: ./todo-frontend
       dockerfile: Dockerfile
+      args:
+        VITE_BACKEND_URL: /api
     container_name: todo-front
     restart: always
 

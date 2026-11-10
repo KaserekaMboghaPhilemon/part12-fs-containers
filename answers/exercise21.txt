@@ -1,0 +1,5 @@
+Exercise 21: The smoke test
+- Verified local production stack running via docker-compose.yml with proper Nginx backend upstream routing on port 3000.
+- Installed todo-tests dependencies and downloaded Playwright browser binaries.
+- Ran and successfully passed local Playwright end-to-end smoke tests against the containerized application.
+- Configured and pushed GitHub Actions workflow in .github/workflows/e2e-tests.yml for automated E2E testing on push.
