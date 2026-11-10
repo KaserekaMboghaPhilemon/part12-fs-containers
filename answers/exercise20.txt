@@ -1,0 +1,4 @@
+Exercise 20: Containerized production env
+- Created todo-app/nginx.conf routing root traffic to the frontend and /api/ traffic to the backend.
+- Created todo-app/docker-compose.yml defining production services with todo-front and todo-backend image names, MongoDB, Redis, and Nginx exposed on port 8080.
+- Verified successful production build and proxy routing.
