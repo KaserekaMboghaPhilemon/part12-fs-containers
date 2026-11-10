@@ -60,7 +60,7 @@ test.describe('Backend API Tests', () => {
   test('GET /api/todos returns todos list', async ({ request }) => {
     const response = await request.get('/api/todos');
     
-    expect(response.status()).toBe(201);
+    expect(response.status()).toBe(200);
     
     const todos = await response.json();
     expect(Array.isArray(todos)).toBe(true);
@@ -76,7 +76,7 @@ test.describe('Backend API Tests', () => {
       data: newTodo
     });
     
-    expect(response.status()).toBe(200);
+    expect(response.status()).toBe(201);
     
     const createdTodo = await response.json();
     expect(createdTodo.text).toBe(newTodo.text);
