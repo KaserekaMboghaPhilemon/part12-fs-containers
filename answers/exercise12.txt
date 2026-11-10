@@ -1,0 +1,53 @@
+Exercise 12: Persisting data in Redis
+
+The root .gitignore already excludes todo-app/redis_data/. The Redis data
+store is configured as the named volume todo-backend_redis_data mounted at
+/data, with Redis append-only persistence enabled.
+
+From the repository root, start the dev services:
+
+PS> docker compose -f .\todo-app\todo-backend\docker-compose.dev.yml up -d
+[+] up 3/3
+Volume todo-backend_redis_data Created
+Container todo-backend-mongo-1 Started
+Container todo-backend-redis-1 Started
+
+Set the test value and verify it through Redis and the API:
+
+PS> docker exec todo-backend-redis-1 redis-cli SET added_todos 555
+OK
+PS> docker exec todo-backend-redis-1 redis-cli GET added_todos
+555
+PS> curl.exe -sS http://localhost:3000/statistics
+{"added_todos":555}
+
+Stop and remove the containers without deleting volumes, then start them again:
+
+PS> docker compose -f .\todo-app\todo-backend\docker-compose.dev.yml down
+[+] down 3/3
+Container todo-backend-mongo-1 Removed
+Container todo-backend-redis-1 Removed
+Network todo-backend_default Removed
+
+PS> docker compose -f .\todo-app\todo-backend\docker-compose.dev.yml up -d
+[+] up 3/3
+Network todo-backend_default Created
+Container todo-backend-redis-1 Started
+Container todo-backend-mongo-1 Started
+
+Verify the value persisted across the restart:
+
+PS> docker exec todo-backend-redis-1 redis-cli GET added_todos
+555
+PS> curl.exe -sS -i http://localhost:3000/statistics
+HTTP/1.1 200 OK
+{"added_todos":555}
+
+Redis persistence checks:
+
+PS> docker exec todo-backend-redis-1 redis-cli INFO persistence
+ aof_enabled:1
+ aof_current_size:152
+
+PS> docker inspect --format '{{range .Mounts}}{{.Name}} -> {{.Destination}}{{println}}{{end}}' todo-backend-redis-1
+todo-backend_redis_data -> /data
