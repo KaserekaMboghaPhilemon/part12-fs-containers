@@ -18,17 +18,9 @@ jobs:
         with:
           node-version: '24'
 
-      - name: Build todo-backend image
-        working-directory: ./todo-app/todo-backend
-        run: docker build -t todo-backend -f Dockerfile .
-
-      - name: Build todo-frontend image
-        working-directory: ./todo-app/todo-frontend
-        run: docker build -t todo-front -f Dockerfile .
-
       - name: Start todo-app with Docker Compose
         working-directory: ./todo-app
-        run: docker compose up -d
+        run: docker compose up -d --build
 
       - name: Wait for services to be ready
         run: |
