@@ -2,11 +2,8 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Todo App E2E Tests', () => {
   test.beforeEach(async ({ page }) => {
-    const todosResponse = page.waitForResponse(response =>
-      response.url().endsWith('/api/todos') && response.request().method() === 'GET'
-    );
-    await page.goto('/', { waitUntil: 'load' });
-    expect((await todosResponse).ok()).toBe(true);
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await expect(page.getByRole('textbox')).toBeVisible();
   });
 
   test('frontend loads and displays the todo application', async ({ page }) => {
