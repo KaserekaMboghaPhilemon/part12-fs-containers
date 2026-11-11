@@ -1,4 +1,5 @@
 Exercise 21: The smoke test
-- Configured robust CI readiness checks in GitHub Actions workflow to poll frontend, API todos, and statistics endpoints.
-- Removed brittle timeout/sleep assumptions from Playwright UI mutation tests, replacing them with explicit network and DOM state assertions.
-- Verified all 7 E2E and backend API tests pass cleanly locally and pushed workflow updates.
+- Configured robust CI readiness polling for frontend, API todos, and statistics endpoints in GitHub Actions.
+- Aligned Playwright test setup and navigation to use stable DOM states and proper backend routing.
+- Fixed container build args in CI workflow to build services via Docker Compose with proper VITE_BACKEND_URL.
+- Verified all local and remote GitHub Actions E2E tests pass successfully.
