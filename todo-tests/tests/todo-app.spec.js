@@ -5,7 +5,7 @@ test.describe('Todo App E2E Tests', () => {
     const todosResponse = page.waitForResponse(response =>
       response.url().endsWith('/api/todos') && response.request().method() === 'GET'
     );
-    await page.goto('/', { waitUntil: 'networkidle' });
+    await page.goto('/', { waitUntil: 'load' });
     expect((await todosResponse).ok()).toBe(true);
   });
 
