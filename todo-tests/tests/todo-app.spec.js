@@ -2,8 +2,11 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Todo App E2E Tests', () => {
   test.beforeEach(async ({ page }) => {
-    // Navigate to the app before each test
-    await page.goto('/');
+    const todosResponse = page.waitForResponse(response =>
+      response.url().endsWith('/api/todos') && response.request().method() === 'GET'
+    );
+    await page.goto('/', { waitUntil: 'networkidle' });
+    expect((await todosResponse).ok()).toBe(true);
   });
 
   test('frontend loads and displays the todo application', async ({ page }) => {
