@@ -1,0 +1,12 @@
+{
+  "persons": [
+    { "name": "Arto Hellas", "number": "040-123456", "id": "1" },
+    { "name": "Ada Lovelace", "number": "39-44-5323523", "id": "2" },
+    { "name": "Philemon Kasereka", "number": "011-4366228", "id": "3" },
+    { "name": "Happy Mbambu", "number": "075-5014877", "id": "4" },
+    { "name": "Fallon Mumbere", "number": "073-9209076", "id": "5" },
+    { "name": "Fifi Kahindo", "number": "073-8119313", "id": "6" },
+    { "name": "Fabien Kambale", "number": "078-3188466", "id": "7" },
+    { "name": "Fanie Biira Melena", "number": "077-5909877", "id": "8" }
+  ]
+}
